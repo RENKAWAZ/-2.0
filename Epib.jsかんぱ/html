@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPUB Viewer</title>
+    <!-- Epub.jsライブラリの読み込み -->
+    <script src="https://unpkg.com/epubjs/dist/epub.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #viewer {
+            width: 80%;
+            height: 600px;
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>EPUB Viewer</h1>
+
+    <!-- EPUBを表示する領域 -->
+    <div id="viewer"></div>
+
+    <!-- 前後ページボタン -->
+    <div id="controls">
+        <button id="prev">前のページ</button>
+        <button id="next">次のページ</button>
+    </div>
+
+    <script>
+        // EPUBファイルを読み込む（ここに実際のEPUBファイルのパスを指定）
+        var book = ePub("path_to_your_epub_file.epub");
+
+        // 表示領域にEPUBをレンダリングする
+        var rendition = book.renderTo("viewer", {
+            width: "100%",
+            height: "100%"
+        });
+
+        // EPUBを初期表示
+        rendition.display();
+
+        // 前のページに移動
+        document.getElementById("prev").addEventListener("click", function() {
+            rendition.prev();
+        });
+
+        // 次のページに移動
+        document.getElementById("next").addEventListener("click", function() {
+            rendition.next();
+        });
+    </script>
+
+</body>
+</html>
