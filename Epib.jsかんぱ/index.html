@@ -7,27 +7,27 @@
 </head>
 <body>
     <h1>算数の単語 EPUB Viewer</h1>
-    <p>ここにEPUBファイルの内容を表示します。</p>
+    <p>EPUBファイルの内容を表示します。</p>
+    <div id="viewer" style="width:100%; height:600px; border:1px solid #000;"></div>
+
     <script src="https://unpkg.com/epubjs/dist/epub.min.js"></script>
     <script>
         console.log("EPUBファイルの読み込みを開始");
 
-        // EPUBファイルを読み込む
+        // EPUBファイルを読み込む（ファイルパスを指定）
         var book = ePub("算数の単語.epub");
 
-        // 表示領域にEPUBをレンダリング
+        // EPUBをレンダリングする領域に表示
         var rendition = book.renderTo("viewer", {
             width: "100%",
-            height: "600px"
+            height: "100%"
         });
 
-        // EPUBを表示
         rendition.display().then(function() {
-            console.log("EPUBファイルが正常に表示されました");
+            console.log("EPUBが正常に表示されました");
         }).catch(function(err) {
-            console.error("EPUBの表示に失敗しました: ", err);
+            console.error("EPUB表示に失敗しました: ", err);
         });
     </script>
-    <div id="viewer"></div>
 </body>
 </html>
